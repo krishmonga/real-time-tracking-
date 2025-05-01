@@ -9,12 +9,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 io.on('connection', function (socket) {
     socket.on("send-location", function (data) {
-        io.emit("recieve-location", { id: socket.id, ...data });
+        io.emit("recieve-location", { id: socket.id, ...data });  
     });
+
     console.log('connected');
 
-    socket.on("disconnect", function () { 
-        io.emit("user-disconnected", socket.id);    
+    socket.on("disconnect", function () {
+        io.emit("user-disconnected", socket.id);  
     });
 });
 app.get('/', function (req, res) {
